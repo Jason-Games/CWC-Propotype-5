@@ -12,15 +12,14 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI gameOverText;
     public Button restartButton;
     public bool isGameActive;
-
+    public GameObject titleScreen;
 
     public float spawnRateSecs = 2f;
     private int score = 0;
 
     void Start()
     {
-        isGameActive = true;
-        StartCoroutine(SpawnTarget());   
+        
        
     }
 
@@ -28,6 +27,18 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void StartGame(float spawnRate)
+    {
+        spawnRateSecs = spawnRate;
+        titleScreen.gameObject.SetActive(false);
+        score = 0;
+        isGameActive = true;
+        gameOverText.gameObject.SetActive(false);
+        restartButton.gameObject.SetActive(false);
+
+        StartCoroutine(SpawnTarget());
     }
 
     public void GameOver()
